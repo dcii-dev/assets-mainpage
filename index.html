@@ -33,6 +33,15 @@
       }
     })();
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGEY83VZY2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-GGEY83VZY2');
+  </script>
 </head>
 
 <body>
@@ -45,13 +54,13 @@
     <div class="site-header__inner">
       <a href="/" class="site-header__logo" aria-label="Other Useful Tools home">
         <svg class="site-header__logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <rect x="1" y="1" width="30" height="30" rx="8" fill="#2563eb"/>
-          <path d="M12 9V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
-          <rect x="5" y="11" width="22" height="14" rx="2.5" fill="white"/>
-          <rect x="14" y="11" width="4" height="4" rx="1" fill="#2563eb"/>
-          <circle cx="10" cy="20" r="1.5" fill="#2563eb" opacity="0.6"/>
-          <circle cx="16" cy="20" r="1.5" fill="#2563eb" opacity="0.6"/>
-          <circle cx="22" cy="20" r="1.5" fill="#2563eb" opacity="0.6"/>
+          <rect x="1" y="1" width="30" height="30" rx="8" fill="#2563eb" />
+          <path d="M12 9V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="white" stroke-width="1.75" stroke-linecap="round" />
+          <rect x="5" y="11" width="22" height="14" rx="2.5" fill="white" />
+          <rect x="14" y="11" width="4" height="4" rx="1" fill="#2563eb" />
+          <circle cx="10" cy="20" r="1.5" fill="#2563eb" opacity="0.6" />
+          <circle cx="16" cy="20" r="1.5" fill="#2563eb" opacity="0.6" />
+          <circle cx="22" cy="20" r="1.5" fill="#2563eb" opacity="0.6" />
         </svg>
         <span class="site-header__logo-text">OtherUsefulTools</span>
       </a>
@@ -88,13 +97,8 @@
 
       <form role="search" aria-label="Tool search and filter" novalidate>
         <label class="toolbar__label" for="tool-search">Search tools</label>
-        <input
-          class="toolbar__input"
-          type="search"
-          id="tool-search"
-          placeholder="Search by name, keyword, or category"
-          autocomplete="off"
-        >
+        <input class="toolbar__input" type="search" id="tool-search" placeholder="Search by name, keyword, or category"
+          autocomplete="off">
       </form>
 
       <div class="toolbar__chip-group" id="category-chips" role="group" aria-label="Filter by category"></div>
