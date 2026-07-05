@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Discover free online tools for fitness, web development, and freelancing. Browse, search, and filter every tool in one place at Other Useful Tools.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Other Useful Tools - Free Online Tool Hub">
+  <meta property="og:description"
+    content="Free tools for web development, fitness, and freelancing. No accounts, no subscriptions. Search, filter, and discover useful utilities in one hub.">
+  <meta property="og:url" content="https://otherusefultools.com/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Other Useful Tools - Free Online Tool Hub">
+  <meta name="twitter:description"
+    content="Free tools for web development, fitness, and freelancing. No accounts, no subscriptions. Discover useful utilities in one hub.">
+  <link rel="canonical" href="https://otherusefultools.com/">
+  <title>Other Useful Tools - Free Online Tool Hub</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/ads.css">
+  <!-- Apply saved theme before paint to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      const t = localStorage.getItem("otherusefultools-theme");
+      if (t === "dark" || t === "light") {
+        document.documentElement.setAttribute("data-theme", t);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- SKIP NAVIGATION -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <a href="/" class="site-header__logo" aria-label="Other Useful Tools home">
+        <svg class="site-header__logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="30" height="30" rx="8" fill="#2563eb"/>
+          <path d="M12 9V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+          <rect x="5" y="11" width="22" height="14" rx="2.5" fill="white"/>
+          <rect x="14" y="11" width="4" height="4" rx="1" fill="#2563eb"/>
+          <circle cx="10" cy="20" r="1.5" fill="#2563eb" opacity="0.6"/>
+          <circle cx="16" cy="20" r="1.5" fill="#2563eb" opacity="0.6"/>
+          <circle cx="22" cy="20" r="1.5" fill="#2563eb" opacity="0.6"/>
+        </svg>
+        <span class="site-header__logo-text">OtherUsefulTools</span>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode"
+        aria-pressed="false">
+        <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">&#9788;</span>
+        <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">&#9790;</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section" aria-labelledby="hero-heading">
+    <div class="hero-section__inner">
+      <h1 class="hero-section__title" id="hero-heading">Free tools. One hub. Zero friction.</h1>
+      <p class="hero-section__description">
+        Use one tool today, discover five more tomorrow. Every tool links back
+        here so you always have a path to your next useful find.
+      </p>
+    </div>
+  </section>
+
+  <!-- AD LEADERBOARD TOP -->
+  <div class="ad-slot ad-slot--leaderboard" aria-hidden="true">
+    <span class="ad-slot__label">Advertisement</span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="site-main" id="main-content">
+
+    <!-- TOOLBAR -->
+    <section class="toolbar" aria-labelledby="toolbar-heading">
+      <h2 class="visually-hidden" id="toolbar-heading">Search and filter tools</h2>
+
+      <form role="search" aria-label="Tool search and filter" novalidate>
+        <label class="toolbar__label" for="tool-search">Search tools</label>
+        <input
+          class="toolbar__input"
+          type="search"
+          id="tool-search"
+          placeholder="Search by name, keyword, or category"
+          autocomplete="off"
+        >
+      </form>
+
+      <div class="toolbar__chip-group" id="category-chips" role="group" aria-label="Filter by category"></div>
+      <p class="toolbar__count" id="result-count" aria-live="polite"></p>
+    </section>
+
+    <!-- TOOL DIRECTORY -->
+    <section class="directory" aria-labelledby="directory-heading">
+      <h2 class="visually-hidden" id="directory-heading">Tool directory</h2>
+      <div class="directory__grid" id="tool-grid"></div>
+      <p class="directory__empty" id="empty-state" hidden>
+        No tools match your search. Try a different keyword.
+      </p>
+    </section>
+
+    <!-- AD INLINE MID PAGE -->
+    <div class="ad-slot ad-slot--inline" aria-hidden="true">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+
+    <!-- CONTENT + SIDEBAR LAYOUT -->
+    <div class="content-layout">
+
+      <!-- SEO CONTENT -->
+      <section class="content-section" aria-labelledby="content-heading">
+        <div class="content-section__body">
+
+          <h2 id="content-heading">Free online tools for web developers, freelancers, and fitness enthusiasts</h2>
+          <p>
+            Other Useful Tools is a growing directory of free-to-use online
+            utilities that cover a wide range of everyday needs. There are no
+            accounts to create, no subscriptions to manage, and no features
+            locked behind a paywall. Every tool here works instantly in the
+            browser. You open the page, use the tool, get your result, and move
+            on. That is the entire experience.
+          </p>
+          <p>
+            The collection spans multiple categories including web development,
+            fitness and nutrition, and business planning. Each tool lives on its
+            own dedicated domain so it can focus entirely on solving one specific
+            problem without distractions. This hub page ties them all together so
+            that when you discover one tool and find it useful, you have a clear
+            path to explore the rest of the collection.
+          </p>
+
+          <h2>Web development tools</h2>
+          <p>
+            Our web development toolkit includes utilities that eliminate
+            repetitive calculations and boilerplate code. The CSS Clamp Generator
+            at clampgen.com lets you create fluid typography and spacing values
+            using the CSS clamp() function. You enter a minimum size, a maximum
+            size, and a viewport range, and it outputs a production-ready clamp()
+            declaration. It also supports full modular type scale generation with
+            ratios like Major Third, Perfect Fourth, and Golden Ratio, so you can
+            build an entire responsive type system in seconds. Both viewport
+            width (vw) and container query width (cqw) units are supported.
+          </p>
+          <p>
+            The Srcset Builder at srcsetbuilder.com solves the problem of writing
+            correct responsive image markup. You define your breakpoints and
+            image widths, and it generates a valid srcset attribute and a sizes
+            attribute that match. The output is a copy-ready img tag you can drop
+            directly into your HTML. No more guessing at width descriptors or
+            manually calculating which image should load at which viewport.
+          </p>
+          <p>
+            The CSS Layout Generator at csslayoutgen.com is a visual builder for
+            CSS Grid, Subgrid, and Flexbox layouts. It provides starter templates
+            for common patterns like holy grail, sidebar, dashboard, and card
+            grids. You can click to add items, drag to resize columns and rows,
+            and toggle between Grid and Flexbox mode. When you are done, it
+            exports clean CSS and HTML that you can copy into your project. It
+            handles named grid areas, explicit track sizing, gap values, and
+            alignment properties without requiring you to memorize the spec.
+          </p>
+
+          <h2>Fitness and nutrition calculators</h2>
+          <p>
+            The Macro Calculator at calmacrocal.com is a comprehensive body
+            composition and nutrition tool. It calculates your Basal Metabolic
+            Rate using both the Mifflin-St Jeor equation and the Katch-McArdle
+            formula (when body fat percentage is known). From your BMR it derives
+            your Total Daily Energy Expenditure based on your activity level, and
+            then it splits that into protein, carbohydrate, and fat targets using
+            discipline-specific macro ratios. Whether your goal is strength
+            training, endurance work, fat loss, or muscle building, the
+            calculator adjusts the split accordingly.
+          </p>
+          <p>
+            It also includes a body fat percentage estimator using the U.S. Navy
+            Method (waist, neck, and hip circumference) and a heart rate training
+            zone calculator using the Karvonen formula. All of this is available
+            instantly without creating an account, entering an email address, or
+            downloading an app.
+          </p>
+          <p>
+            The One Rep Max Calculator at onerepmaxx.com estimates your
+            single-rep maximum from a weight and rep count using three
+            established formulas: Brzycki, Epley, and Lombardi. Rather than
+            giving you a single number, it shows you all three estimates side by
+            side so you can see where the consensus falls. Beyond the basic
+            estimate, the tool generates a customizable warm-up ramp that
+            progressively loads you to your working weight. It includes a
+            competition attempt selector for powerlifting meets, a reverse
+            calculator that works backward from a target 1RM to tell you what
+            weight and reps you should be hitting in training, and a PR history
+            tracker that stores your personal records locally in the browser over
+            time.
+          </p>
+
+          <h2>Business and freelance utilities</h2>
+          <p>
+            The Freelance Rate Calculator at freelanceratewise.com helps
+            independent workers understand their true hourly rate. Most
+            freelancers set their rate by gut feeling or by copying what others
+            charge, without accounting for the hours they spend on
+            administration, marketing, invoicing, and other non-billable work.
+            This tool asks for your target annual income, your estimated tax
+            burden, your monthly overhead and business expenses, and the
+            percentage of your working hours that are actually billable. It then
+            calculates your survival rate (what you need to break even) and your
+            growth rate (what you need to save, invest, and build a buffer).
+          </p>
+          <p>
+            The result is a clear number that accounts for reality instead of
+            assumptions. It is especially useful for freelancers transitioning
+            from full-time employment who do not yet have an intuition for what
+            their time is worth once benefits, paid time off, and employer tax
+            contributions disappear from the equation.
+          </p>
+
+          <h2>Why a centralized tool hub?</h2>
+          <p>
+            Each tool in this collection is designed to do one thing well and
+            load fast. They are intentionally simple, single-purpose pages with
+            no bloat. But that simplicity creates a discovery problem: if someone
+            finds the macro calculator through a search engine, they have no
+            reason to know that a CSS layout generator or a freelance rate
+            calculator exists from the same source.
+          </p>
+          <p>
+            This hub solves that. Every tool links back to this page, and this
+            page links out to every tool. The search bar and category filters let
+            you find what you need quickly. As the collection grows, new tools
+            appear here automatically. Bookmark this page once and you will
+            always have access to the full directory.
+          </p>
+
+          <h2>Built for speed, privacy, and accessibility</h2>
+          <p>
+            All tools in this collection are static sites with no server-side
+            processing. Your inputs stay in your browser. Nothing is sent to a
+            database, and nothing is tracked beyond standard anonymized analytics.
+            Every tool is built to meet WCAG 2.2 AA accessibility standards with
+            proper heading hierarchies, keyboard navigation, focus indicators,
+            and screen reader support. They load fast on any connection because
+            they ship minimal JavaScript and no heavy frameworks.
+          </p>
+          <p>
+            Whether you are a front-end developer looking for layout shortcuts, a
+            personal trainer who needs quick nutrition math, or a freelancer
+            trying to price your services honestly, this hub has something
+            useful. Use the search and category filters above to find what fits
+            your workflow, and check back regularly as new tools are added.
+          </p>
+
+        </div>
+      </section>
+
+      <!-- SIDEBAR AD -->
+      <aside class="content-sidebar" aria-label="Advertisements">
+        <div class="ad-slot ad-slot--sidebar" aria-hidden="true">
+          <span class="ad-slot__label">Advertisement</span>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- AD MEDIUM RECTANGLE -->
+    <div class="ad-slot ad-slot--rectangle" aria-hidden="true">
+      <span class="ad-slot__label">Advertisement</span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer__inner">
+      <p class="site-footer__copy">
+        &copy; <span id="footer-year"></span> OtherUsefulTools.com. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
