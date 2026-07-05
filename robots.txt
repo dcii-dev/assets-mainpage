@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://otherusefultools.com/sitemap.xml
