@@ -5,7 +5,7 @@
   const TOOLS = [
     {
       name: "CSS Clamp Generator",
-      category: "Web Development",
+      categories: ["Web Development", "CSS", "Performance"],
       description:
         "Generate CSS clamp() declarations for fluid typography and spacing. Supports viewport and container query units plus full type scale generation.",
       tags: ["css", "typography", "responsive", "clamp"],
@@ -13,7 +13,7 @@
     },
     {
       name: "Freelance Rate Calculator",
-      category: "Business",
+      categories: ["Business"],
       description:
         "Calculate your true freelance hourly rate factoring in non-billable hours, taxes, overhead, and expenses.",
       tags: ["freelance", "finance", "hourly rate", "pricing"],
@@ -21,7 +21,7 @@
     },
     {
       name: "Macro Calculator",
-      category: "Fitness",
+      categories: ["Fitness"],
       description:
         "Calculate BMR, TDEE, daily macro targets, body fat percentage, and heart rate training zones.",
       tags: ["nutrition", "macros", "tdee", "bmr"],
@@ -29,7 +29,7 @@
     },
     {
       name: "One Rep Max Calculator",
-      category: "Fitness",
+      categories: ["Fitness"],
       description:
         "Estimate your 1RM from three proven formulas. Includes warm-up ramp, competition attempts, and PR history tracking.",
       tags: ["strength", "1rm", "training", "powerlifting"],
@@ -37,7 +37,7 @@
     },
     {
       name: "Srcset Builder",
-      category: "Web Development",
+      categories: ["Web Development", "Performance"],
       description:
         "Build responsive image srcset and sizes attributes from your target breakpoints. Copy production-ready markup in one click.",
       tags: ["images", "responsive", "performance", "srcset"],
@@ -45,7 +45,7 @@
     },
     {
       name: "CSS Layout Generator",
-      category: "Web Development",
+      categories: ["Web Development", "CSS"],
       description:
         "Visual CSS Grid, Subgrid, and Flexbox layout builder with templates, drag-resize controls, and code output.",
       tags: ["grid", "flexbox", "layout", "generator"],
@@ -58,7 +58,7 @@
    * @return {!Array<string>} Sorted category names.
    */
   function getCategories() {
-    const categories = TOOLS.map((tool) => tool.category);
+    const categories = TOOLS.flatMap((tool) => tool.categories);
     return [...new Set(categories)].sort();
   }
 
@@ -95,11 +95,11 @@
    */
   function isToolMatch(tool, activeCategory, query) {
     const matchesCategory =
-      activeCategory === "All" || tool.category === activeCategory;
+      activeCategory === "All" || tool.categories.includes(activeCategory);
 
     const searchBlob = [
       tool.name,
-      tool.category,
+      tool.categories.join(" "),
       tool.description,
       tool.tags.join(" "),
     ]
@@ -123,7 +123,7 @@
     return `
       <article class="tool-card" aria-label="${tool.name}">
         <h3 class="tool-card__name">${tool.name}</h3>
-        <p class="tool-card__meta">${tool.category}</p>
+        <p class="tool-card__meta">${tool.categories.join(", ")}</p>
         <p class="tool-card__description">${tool.description}</p>
         <div class="tool-card__tags" aria-label="Keywords">${tagMarkup}</div>
         <a class="tool-card__cta" href="${tool.url}" target="_blank" rel="noopener">
