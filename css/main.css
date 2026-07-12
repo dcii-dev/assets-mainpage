@@ -337,6 +337,24 @@ a:hover {
 }
 
 /* ================================
+   TOOL DIRECTORY SECTIONS
+   ================================ */
+.directory__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.tool-section__heading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  padding-bottom: 0.625rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid var(--clr-accent);
+}
+
+/* ================================
    TOOL DIRECTORY GRID
    ================================ */
 .directory__grid {

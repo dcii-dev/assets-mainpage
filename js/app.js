@@ -5,7 +5,7 @@
   const TOOLS = [
     {
       name: "CSS Clamp Generator",
-      categories: ["Web Development", "CSS", "Performance"],
+      categories: ["Web Development", "CSS", "Web Performance"],
       description:
         "Generate CSS clamp() declarations for fluid typography and spacing. Supports viewport and container query units plus full type scale generation.",
       tags: ["css", "typography", "responsive", "clamp"],
@@ -37,7 +37,7 @@
     },
     {
       name: "Srcset Builder",
-      categories: ["Web Development", "Performance"],
+      categories: ["Web Development", "Web Performance"],
       description:
         "Build responsive image srcset and sizes attributes from your target breakpoints. Copy production-ready markup in one click.",
       tags: ["images", "responsive", "performance", "srcset"],
@@ -51,23 +51,37 @@
       tags: ["grid", "flexbox", "layout", "generator"],
       url: "https://csslayoutgen.com/",
     },
+    {
+      name: "CSS Box Shadow Generator",
+      categories: ["Web Development", "CSS"],
+      description:
+        "Build multi-layer CSS box shadows visually with live preview, inset support, per-layer opacity, presets, and copy-ready CSS output.",
+      tags: ["box-shadow", "shadow", "css", "generator"],
+      url: "https://boxshadowgen.com/",
+    },
   ];
 
+  /** Section display order. */
+  const SECTION_ORDER = ["Web Development", "Fitness", "Business"];
+
   /**
-   * Returns all distinct categories from tool data.
-   * @return {!Array<string>} Sorted category names.
+   * Returns sub-categories derived from tool data (categories that are
+   * not top-level section names), sorted alphabetically.
+   * @return {!Array<string>}
    */
-  function getCategories() {
-    const categories = TOOLS.flatMap((tool) => tool.categories);
-    return [...new Set(categories)].sort();
+  function getSubcategories() {
+    const all = TOOLS.flatMap((tool) => tool.categories);
+    return [...new Set(all)]
+      .filter((cat) => !SECTION_ORDER.includes(cat))
+      .sort();
   }
 
   /**
-   * Creates and renders category filter chips.
+   * Creates and renders filter chips: All, sections, then sub-categories.
    * @param {!HTMLElement} container Parent element for chips.
    */
   function renderCategoryChips(container) {
-    const categories = ["All", ...getCategories()];
+    const categories = ["All", ...SECTION_ORDER, ...getSubcategories()];
 
     categories.forEach((category) => {
       const button = document.createElement("button");
@@ -87,27 +101,46 @@
   }
 
   /**
-   * Checks whether a tool matches current filters.
-   * @param {!Object} tool Tool data object.
-   * @param {string} activeCategory Active category filter.
+   * Returns tools for a section that match the active filter and query,
+   * sorted alphabetically by name.
+   * @param {string} section Section name (e.g. "Web Development").
+   * @param {string} activeCategory Active category filter or "All".
    * @param {string} query Lowercase search string.
-   * @return {boolean} True when tool should be shown.
+   * @return {!Array<!Object>} Matching tools sorted by name.
    */
-  function isToolMatch(tool, activeCategory, query) {
-    const matchesCategory =
-      activeCategory === "All" || tool.categories.includes(activeCategory);
+  function getSectionTools(section, activeCategory, query) {
+    const isAll = activeCategory === "All";
+    const isSectionFilter = SECTION_ORDER.includes(activeCategory);
+    const isSubcategoryFilter = !isAll && !isSectionFilter;
 
-    const searchBlob = [
-      tool.name,
-      tool.categories.join(" "),
-      tool.description,
-      tool.tags.join(" "),
-    ]
-      .join(" ")
-      .toLowerCase();
+    // When a top-level section chip is active, skip non-matching sections
+    if (isSectionFilter && activeCategory !== section) {
+      return [];
+    }
 
-    const matchesQuery = !query || searchBlob.includes(query);
-    return matchesCategory && matchesQuery;
+    return TOOLS.filter((tool) => tool.categories.includes(section))
+      .filter((tool) => {
+        // Sub-category chip: only tools that carry that sub-category
+        if (isSubcategoryFilter) {
+          return tool.categories.includes(activeCategory);
+        }
+        return true;
+      })
+      .filter((tool) => {
+        if (!query) {
+          return true;
+        }
+        const searchBlob = [
+          tool.name,
+          tool.categories.join(" "),
+          tool.description,
+          tool.tags.join(" "),
+        ]
+          .join(" ")
+          .toLowerCase();
+        return searchBlob.includes(query);
+      })
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
   /**
@@ -123,10 +156,10 @@
     return `
       <article class="tool-card" aria-label="${tool.name}">
         <h3 class="tool-card__name">${tool.name}</h3>
-        <p class="tool-card__meta">${tool.categories.join(", ")}</p>
         <p class="tool-card__description">${tool.description}</p>
         <div class="tool-card__tags" aria-label="Keywords">${tagMarkup}</div>
-        <a class="tool-card__cta" href="${tool.url}" target="_blank" rel="noopener">
+        <a class="tool-card__cta" href="${tool.url}" target="_blank"
+          rel="noopener">
           Open tool
         </a>
       </article>
@@ -134,20 +167,35 @@
   }
 
   /**
-   * Renders filtered tool cards and updates count.
-   * @param {!HTMLElement} grid Card container.
+   * Renders tools grouped by section and updates count.
+   * @param {!HTMLElement} container Sections container.
    * @param {!HTMLElement} countEl Result count element.
    * @param {!HTMLElement} emptyEl Empty-state element.
-   * @param {string} category Active category.
+   * @param {string} category Active category filter.
    * @param {string} query Current search query.
    */
-  function renderTools(grid, countEl, emptyEl, category, query) {
-    const matches = TOOLS.filter((tool) => isToolMatch(tool, category, query));
-    grid.innerHTML = matches.map(getToolCardMarkup).join("");
+  function renderTools(container, countEl, emptyEl, category, query) {
+    let totalShown = 0;
 
-    const plural = matches.length === 1 ? "tool" : "tools";
-    countEl.textContent = `${matches.length} ${plural} shown`;
-    emptyEl.hidden = matches.length > 0;
+    const sectionsMarkup = SECTION_ORDER.map((section) => {
+      const tools = getSectionTools(section, category, query);
+      if (tools.length === 0) {
+        return "";
+      }
+      totalShown += tools.length;
+      const cardsMarkup = tools.map(getToolCardMarkup).join("");
+      return `
+        <div class="tool-section">
+          <h3 class="tool-section__heading">${section}</h3>
+          <div class="directory__grid">${cardsMarkup}</div>
+        </div>
+      `;
+    }).join("");
+
+    container.innerHTML = sectionsMarkup;
+    const plural = totalShown === 1 ? "tool" : "tools";
+    countEl.textContent = `${totalShown} ${plural} shown`;
+    emptyEl.hidden = totalShown > 0;
   }
 
   /**
